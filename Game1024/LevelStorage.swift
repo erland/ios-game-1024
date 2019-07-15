@@ -119,15 +119,11 @@ class LevelStorage {
         return StoredLevel.init(type: board.name, current: current, score: score, seconds: seconds)
     }
     
-    func registerRecord(board: Board, score: Int, seconds: Int) {
-        if !board.name.contains("unlimited") && !board.isSuccessfullyCompleted() {
-            // We don't store records for uncompleted boards
-            return
-        }
+    func registerRecord(type: String, current: String, score: Int, seconds: Int) {
         var records = loadData(LevelRecord.self, forKey: "records")
         var shouldBeAdded = true
         for (i,r) in records.enumerated() {
-            if r.type == board.name {
+            if r.type == type {
                 if r.type.contains("unlimited") {
                     if r.score > score {
                         shouldBeAdded = false
@@ -145,7 +141,7 @@ class LevelStorage {
             }
         }
         if shouldBeAdded {
-            records.append(LevelRecord.init(type: board.name, current: board.asString(), score: score, seconds: seconds))
+            records.append(LevelRecord.init(type: type, current: current, score: score, seconds: seconds))
         }
         storeData(records, forKey: "records")
     }
@@ -169,7 +165,7 @@ class LevelStorage {
 
     func getInProgress(type: String) -> LevelState? {
         
-        let started = loadData(LevelRecord.self, forKey: "inProgress")
+        let started = loadData(StoredLevel.self, forKey: "inProgress")
         for b in started {
             if b.type == type {
                 return LevelState(current: b.current, score: b.score, seconds: b.seconds)

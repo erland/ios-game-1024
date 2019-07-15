@@ -51,7 +51,18 @@ class GameViewController: UIViewController, GameDelegate {
     
     func gameCompleted(board: Board, score: Int, seconds: Int) {
         if board.isCompleted() {
-            LevelStorage().registerRecord(board: board, score: score, seconds: seconds)
+            let boardString = board.asString()
+            if board.goal>0 {
+                if board.isSuccessfullyCompleted() {
+                    LevelStorage().registerRecord(type: board.name, current: boardString, score: score, seconds: seconds)
+                    LevelStorage().registerRecord(type: board.name+" unlimited", current: boardString, score: score, seconds: seconds)
+                }else {
+                    LevelStorage().registerRecord(type: board.name+" unlimited", current: boardString, score: score, seconds: seconds)
+                }
+            }else {
+                LevelStorage().registerRecord(type: board.name, current: boardString, score: score, seconds: seconds)
+            }
+
             LevelStorage().removeBoardInProgress(type: board.name)
             if let view = self.view as! SKView? {
                 // Load the SKScene from 'GameScene.sks'
@@ -68,6 +79,7 @@ class GameViewController: UIViewController, GameDelegate {
                 view.ignoresSiblingOrder = true
             }
         }else {
+            LevelStorage().storeBoardInProgress(board: board, score: score, seconds: seconds)
             selectDifficulty()
         }
 

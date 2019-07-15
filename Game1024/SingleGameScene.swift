@@ -161,7 +161,7 @@ class SingleGameScene: SKScene, BoardObserver {
         let touchLocation = touch.location(in: self)
         
         if quitButton!.contains(touchLocation) {
-            gameDelegate?.backToMenu()
+            gameDelegate?.gameCompleted(board: boardView!.board!, score: score, seconds: timeCounter)
         }
 
     }
