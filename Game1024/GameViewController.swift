@@ -100,12 +100,10 @@ class GameViewController: UIViewController, GameDelegate {
             board = Board(name: "1024", width: 4, height: 4, goal: 1024, primaryFeed: 1, secondaryFeed: 1)
         case "2048":
             board = Board(name: "2048", width: 4, height: 4, goal: 2048, primaryFeed: 2, secondaryFeed: 4)
-        case "5x5":
-            board = Board(name: "5x5", width: 5, height: 5, goal: 65536, primaryFeed: 2, secondaryFeed: 4)
-        case "8x8":
-            board = Board(name: "8x8", width: 8, height: 8, goal: 16384, primaryFeed: 2, secondaryFeed: 4)
-            board.addRandomOnEmpty()
-            board.addRandomOnEmpty()
+        case "4096":
+            board = Board(name: "4096", width: 4, height: 4, goal: 4096, primaryFeed: 2, secondaryFeed: 4)
+        case "1024 unlimited":
+            board = Board(name: "1024 unlimited", width: 4, height: 4, goal: 0, primaryFeed: 1, secondaryFeed: 1)
         case "2048 unlimited":
             board = Board(name: "2048 unlimited", width: 4, height: 4, goal: 0, primaryFeed: 2, secondaryFeed: 4)
         default:

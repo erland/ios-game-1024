@@ -12,8 +12,8 @@ class SelectDifficultyScene: SKScene {
     var gameDelegate: GameDelegate?
     var button1024: SKLabelNode?
     var button2048: SKLabelNode?
-    var button5x5: SKLabelNode?
-    var button8x8: SKLabelNode?
+    var button4096: SKLabelNode?
+    var button1024unlimited: SKLabelNode?
     var button2048unlimited: SKLabelNode?
 
     func setup(delegate: GameDelegate) {
@@ -21,8 +21,8 @@ class SelectDifficultyScene: SKScene {
         
         self.button1024 = childNode(withName:"1024") as? SKLabelNode
         self.button2048 = childNode(withName:"2048") as? SKLabelNode
-        self.button5x5 = childNode(withName:"5x5") as? SKLabelNode
-        self.button8x8 = childNode(withName:"8x8") as? SKLabelNode
+        self.button4096 = childNode(withName:"4096") as? SKLabelNode
+        self.button1024unlimited = childNode(withName:"1024unlimited") as? SKLabelNode
         self.button2048unlimited = childNode(withName:"2048unlimited") as? SKLabelNode
     }
     
@@ -39,10 +39,10 @@ class SelectDifficultyScene: SKScene {
             gameDelegate?.selectedDifficulty(type: "1024")
         }else if button2048!.contains(touchLocation) {
             gameDelegate?.selectedDifficulty(type: "2048")
-        }else if button5x5!.contains(touchLocation) {
-            gameDelegate?.selectedDifficulty(type: "5x5")
-        }else if button8x8!.contains(touchLocation) {
-            gameDelegate?.selectedDifficulty(type: "8x8")
+        }else if button4096!.contains(touchLocation) {
+            gameDelegate?.selectedDifficulty(type: "4096")
+        }else if button1024unlimited!.contains(touchLocation) {
+            gameDelegate?.selectedDifficulty(type: "1024 unlimited")
         }else if button2048unlimited!.contains(touchLocation) {
             gameDelegate?.selectedDifficulty(type: "2048 unlimited")
         }
