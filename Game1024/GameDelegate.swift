@@ -9,7 +9,7 @@
 protocol GameDelegate {
     func gameCompleted(board: Board, score: Int, seconds: Int)
     func restartGame()
-    func backToMenu()
+    func backToMenu(board: Board, score: Int, seconds: Int)
     func selectedDifficulty(type: String)
     //func selectedCompletedLevels()
     //func selectedInProgressLevels()

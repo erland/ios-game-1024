@@ -17,6 +17,7 @@ class SingleGameScene: SKScene, BoardObserver {
     var recordLabel : SKLabelNode?
     var recordText : SKLabelNode?
     var quitButton : SKLabelNode?
+    var pauseButton : SKLabelNode?
     var timeCounter : Int = 0
     var recordScore : Int?
     var recordTime : Int?
@@ -39,6 +40,7 @@ class SingleGameScene: SKScene, BoardObserver {
         }
         self.boardView?.setup(board: board)
         self.quitButton = childNode(withName: "quit") as? SKLabelNode
+        self.pauseButton = childNode(withName: "pause") as? SKLabelNode
         self.scoreText = childNode(withName: "score") as? SKLabelNode
         self.score = score
         displayScore()
@@ -161,6 +163,8 @@ class SingleGameScene: SKScene, BoardObserver {
         let touchLocation = touch.location(in: self)
         
         if quitButton!.contains(touchLocation) {
+            gameDelegate?.backToMenu(board: boardView!.board!, score: score, seconds: timeCounter)
+        }else if pauseButton!.contains(touchLocation) {
             gameDelegate?.gameCompleted(board: boardView!.board!, score: score, seconds: timeCounter)
         }
 

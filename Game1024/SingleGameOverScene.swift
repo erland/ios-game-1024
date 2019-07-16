@@ -17,10 +17,13 @@ class SingleGameOverScene: SKScene {
     var completedIn: SKLabelNode?
     var scoreText: SKLabelNode?
     var boardName: SKLabelNode?
+    var score: Int = 0
+    var seconds: Int = 0
     
     func setup(delegate: GameDelegate, board: Board, score: Int, seconds: Int) {
         self.gameDelegate = delegate
-        
+        self.score = score
+        self.seconds = seconds
         self.boardView = childNode(withName:"board") as? BoardView
         self.status = childNode(withName:"status") as? SKLabelNode
         self.boardName = childNode(withName:"boardName") as? SKLabelNode
@@ -60,7 +63,7 @@ class SingleGameOverScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // We need to ensure the sceen is shown for 2 seconds before we allow player to continue
         if openedTime!<NSDate().timeIntervalSince1970-2 {
-            gameDelegate?.backToMenu()
+            gameDelegate?.backToMenu(board: boardView!.board!, score: score, seconds: seconds)
         }
     }
 }

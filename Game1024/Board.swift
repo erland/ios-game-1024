@@ -70,6 +70,7 @@ class Board {
                     if let number = characterToNumber(String(ch)) {
                         let n = Number(number: number, x: x, y: y)
                         board[x,y] = n
+                        numbers.insert(n)
                     }
                 }
             }

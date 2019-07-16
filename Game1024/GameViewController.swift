@@ -89,35 +89,64 @@ class GameViewController: UIViewController, GameDelegate {
         viewDidLoad()
     }
     
-    func backToMenu() {
+    func backToMenu(board: Board, score: Int, seconds: Int) {
+        LevelStorage().removeBoardInProgress(type: board.name)
         viewDidLoad()
     }
     
     func selectedDifficulty(type: String) {
         var board: Board
+        var boardString: String?
+        var goal = 0
+        var startTime = 0
+        var score = 0
+        var primaryFeed = 1
+        var secondaryFeed = 1
+        if let state = LevelStorage().getInProgress(type: type) {
+            score = state.score
+            startTime = state.seconds
+            boardString = state.current
+        }
         switch type {
         case "1024":
-            board = Board(name: "1024", width: 4, height: 4, goal: 1024, primaryFeed: 1, secondaryFeed: 1)
+            goal = 1024
+            primaryFeed = 1
+            secondaryFeed = 1
         case "2048":
-            board = Board(name: "2048", width: 4, height: 4, goal: 2048, primaryFeed: 2, secondaryFeed: 4)
+            goal = 2048
+            primaryFeed = 2
+            secondaryFeed = 4
         case "4096":
-            board = Board(name: "4096", width: 4, height: 4, goal: 4096, primaryFeed: 2, secondaryFeed: 4)
+            goal = 4096
+            primaryFeed = 2
+            secondaryFeed = 4
         case "1024 unlimited":
-            board = Board(name: "1024 unlimited", width: 4, height: 4, goal: 0, primaryFeed: 1, secondaryFeed: 1)
+            goal = 0
+            primaryFeed = 1
+            secondaryFeed = 1
         case "2048 unlimited":
-            board = Board(name: "2048 unlimited", width: 4, height: 4, goal: 0, primaryFeed: 2, secondaryFeed: 4)
+            goal = 0
+            primaryFeed = 2
+            secondaryFeed = 4
         default:
-            board = Board(name: "1024", width: 4, height: 4, goal: 1024, primaryFeed: 1, secondaryFeed: 1)
+            goal = 1024
+            primaryFeed = 1
+            secondaryFeed = 1
         }
-        board.addRandomOnEmpty()
-        board.addRandomOnEmpty()
+        if let boardString = boardString {
+            board = Board(name: type, width: 4, height: 4, goal: goal, primaryFeed: primaryFeed, secondaryFeed: secondaryFeed, boardString: boardString)
+        }else {
+            board = Board(name: type, width: 4, height: 4, goal: goal, primaryFeed: primaryFeed, secondaryFeed: secondaryFeed)
+            board.addRandomOnEmpty()
+            board.addRandomOnEmpty()
+        }
 
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "SingleGameScene") as? SingleGameScene {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFit
-                scene.setup(delegate: self, board: board, score: 0, startTime: 0)
+                scene.setup(delegate: self, board: board, score: score, startTime: startTime)
                 
                 // Present the scene
                 view.presentScene(scene)
