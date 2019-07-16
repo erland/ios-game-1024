@@ -67,8 +67,7 @@ class Board {
                 let i = width*y+x
                 if boardString.count > i {
                     let ch = boardString[boardString.index(boardString.startIndex, offsetBy: i)]
-                    var number = characterToNumber(String(ch))
-                    if let number = number {
+                    if let number = characterToNumber(String(ch)) {
                         let n = Number(number: number, x: x, y: y)
                         board[x,y] = n
                     }
