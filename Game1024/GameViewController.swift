@@ -107,6 +107,8 @@ class GameViewController: UIViewController, GameDelegate {
             startTime = state.seconds
             boardString = state.current
         }
+        var startNumbers = 2
+        var size = 4
         switch type {
         case "1024":
             goal = 1024
@@ -128,17 +130,24 @@ class GameViewController: UIViewController, GameDelegate {
             goal = 0
             primaryFeed = 2
             secondaryFeed = 4
+        case "8x8 unlimited":
+            goal = 0
+            primaryFeed = 2
+            secondaryFeed = 4
+            startNumbers = 4
+            size = 8
         default:
             goal = 1024
             primaryFeed = 1
             secondaryFeed = 1
         }
         if let boardString = boardString {
-            board = Board(name: type, width: 4, height: 4, goal: goal, primaryFeed: primaryFeed, secondaryFeed: secondaryFeed, boardString: boardString)
+            board = Board(name: type, width: size, height: size, goal: goal, primaryFeed: primaryFeed, secondaryFeed: secondaryFeed, boardString: boardString)
         }else {
-            board = Board(name: type, width: 4, height: 4, goal: goal, primaryFeed: primaryFeed, secondaryFeed: secondaryFeed)
-            board.addRandomOnEmpty()
-            board.addRandomOnEmpty()
+            board = Board(name: type, width: size, height: size, goal: goal, primaryFeed: primaryFeed, secondaryFeed: secondaryFeed)
+            for _ in 0..<startNumbers {
+                board.addRandomOnEmpty()
+            }
         }
 
         if let view = self.view as! SKView? {

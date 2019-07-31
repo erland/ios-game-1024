@@ -79,6 +79,8 @@ class LevelStorage {
             board = Board(name: "1024 unlimited", width: 4, height: 4, goal: 0, primaryFeed: 1, secondaryFeed: 1, boardString: storedLevel.current)
         case "2048 unlimited":
             board = Board(name: "2048 unlimited", width: 4, height: 4, goal: 0, primaryFeed: 2, secondaryFeed: 4, boardString: storedLevel.current)
+        case "8x8 unlimited":
+            board = Board(name: "8x8 unlimited", width: 8, height: 8, goal: 0, primaryFeed: 2, secondaryFeed: 4, boardString: storedLevel.current)
         default:
             board = Board(name: "1024", width: 4, height: 4, goal: 1024, primaryFeed: 1, secondaryFeed: 1, boardString: storedLevel.current)
         }
