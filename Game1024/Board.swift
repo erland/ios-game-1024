@@ -417,15 +417,15 @@ class Board {
         case 16384:
             return "e"
         case 32768:
-            return "e"
-        case 65536:
             return "f"
-        case 131072:
+        case 65536:
             return "g"
-        case 262144:
+        case 131072:
             return "h"
-        case 524288:
+        case 262144:
             return "i"
+        case 524288:
+            return "j"
         default:
             return "o"
         }
