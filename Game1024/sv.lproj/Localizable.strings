@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  Game1024
+
+  Created by Erland Isaksson on 2019-08-08.
+  Copyright © 2019 Erland Isaksson. All rights reserved.
+*/
+"selectMode" = "Välj typ av spel";
+"inProgress" = "Pågående";
+"congratulations" = "Grattis";
+"gameOver" = "Game Over";
+"completedIn" = "Slutfört på";
+"score" = "Poäng";
+"quit" = "Avsluta";
+"pause" = "Fortsätt senare";
+"record" = "Rekord";
+"asHighScoreAsPossible" = "få så mycket poäng som möjligt";
+"reachATileWith" = "uppnå en ruta med";
+"timeSpent" = "Spenderad tid";
+"unlimited" = "obegränsad";

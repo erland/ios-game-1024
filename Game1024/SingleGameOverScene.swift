@@ -20,6 +20,10 @@ class SingleGameOverScene: SKScene {
     var score: Int = 0
     var seconds: Int = 0
     
+    override func sceneDidLoad() {
+        localize()
+    }
+
     func setup(delegate: GameDelegate, board: Board, score: Int, seconds: Int) {
         self.gameDelegate = delegate
         self.score = score
@@ -28,21 +32,21 @@ class SingleGameOverScene: SKScene {
         self.status = childNode(withName:"status") as? SKLabelNode
         self.boardName = childNode(withName:"boardName") as? SKLabelNode
         if board.goal>0 {
-            boardName?.text = "\(board.name) (reach a \(board.goal) tile)"
+            boardName?.text = "\(board.name) (\(NSLocalizedString("reachATileWith", comment: "reachATileWith")) \(board.goal))"
         }else {
-            boardName?.text = "\(board.name) (get as high score as possible)"
+            boardName?.text = "\(board.name) (\(NSLocalizedString("asHighScoreAsPossible", comment: "asHighScoreAsPossible")))"
         }
         self.completedIn = childNode(withName:"completedIn") as? SKLabelNode
         self.scoreText = childNode(withName:"score") as? SKLabelNode
         self.boardView?.setup(board: board)
         if boardView!.board!.isSuccessfullyCompleted() {
-            status?.text = "Congratulations!"
-            displayCompletionTime(prefix: "Completed in", seconds: seconds)
-            scoreText?.text = "Score: \(score)"
+            status?.text = "\(NSLocalizedString("congratulations", comment: "congratulations"))!"
+            displayCompletionTime(prefix: "\(NSLocalizedString("completedIn", comment: "completedIn"))", seconds: seconds)
+            scoreText?.text = "\(NSLocalizedString("score", comment: "score")): \(score)"
         }else {
-            status?.text = "Game Over"
-            displayCompletionTime(prefix: "Time spent", seconds: seconds)
-            scoreText?.text = "Score: \(score)"
+            status?.text = "\(NSLocalizedString("gameOver", comment: "gameOver"))"
+            displayCompletionTime(prefix: "\(NSLocalizedString("timeSpent", comment: "timeSpent"))", seconds: seconds)
+            scoreText?.text = "\(NSLocalizedString("score", comment: "score")): \(score)"
         }
         
     }

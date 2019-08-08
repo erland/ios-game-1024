@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  Game1024
+
+  Created by Erland Isaksson on 2019-08-08.
+  Copyright © 2019 Erland Isaksson. All rights reserved.
+*/
+"selectMode" = "Select type of game";
+"inProgress" = "In progress";
+"congratulations" = "Congratulations";
+"gameOver" = "Game Over";
+"completedIn" = "Completed in";
+"score" = "Score";
+"quit" = "Quit";
+"pause" = "Pause";
+"record" = "Record";
+"asHighScoreAsPossible" = "get as high score as possible";
+"reachATileWith" = "reach a tile with";
+"timeSpent" = "Time spent";
+"unlimited" = "unlimited";

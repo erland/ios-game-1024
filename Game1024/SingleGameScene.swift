@@ -27,6 +27,10 @@ class SingleGameScene: SKScene, BoardObserver {
     let swipeUpRec = UISwipeGestureRecognizer()
     let swipeDownRec = UISwipeGestureRecognizer()
     
+    override func sceneDidLoad() {
+        localize()
+    }
+    
     func setup(delegate: GameDelegate, board: Board, score: Int, startTime: Int) {
         self.gameDelegate = delegate
         
@@ -34,9 +38,9 @@ class SingleGameScene: SKScene, BoardObserver {
         
         let boardNameLabel = childNode(withName: "boardName") as? SKLabelNode
         if board.goal>0 {
-            boardNameLabel?.text = "\(board.name) (reach a \(board.goal) tile)"
+            boardNameLabel?.text = "\(board.name) (\(NSLocalizedString("reachATileWith", comment: "reachATileWith")) \(board.goal))"
         }else {
-            boardNameLabel?.text = "\(board.name) (get as high score as possible)"
+            boardNameLabel?.text = "\(board.name) (\(NSLocalizedString("asHighScoreAsPossible", comment: "asHighScoreAsPossible")))"
         }
         self.boardView?.setup(board: board)
         self.quitButton = childNode(withName: "quit") as? SKLabelNode
@@ -120,7 +124,7 @@ class SingleGameScene: SKScene, BoardObserver {
         if recordScore != nil && score>recordScore! {
             scoreText?.fontColor = .green
         }
-        scoreText?.text = "Score: \(score)"
+        scoreText?.text = "\(NSLocalizedString("score", comment: "score")): \(score)"
     }
 
     
